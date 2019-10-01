@@ -21,12 +21,15 @@ $(".bringTheDogBreed").submit(function(event) {
   fetch('https://dog.ceo/api/breed/'+$(".userInputBreed").val().toLowerCase()+`/images/random`)
     .then(response => response.json())
     .then(responseJson => getDogByBreed(responseJson))
-});
+    .catch(function(error) 
+      {console.log('There has been a problem with your fetch operation: ', error.message);
+      displayError();
+      });
+    });
 
 function displayError(){
   $(".dogsByBreedContainer").html("<li>Sorry, breed not found. Try again.</li>");
 }
-
 function getDogByBreed(userInputBreed) {
   console.log(userInputBreed);
   if(userInputBreed.message === "Breed not found (master breed does not exist)") 
