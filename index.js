@@ -8,7 +8,13 @@ $(".bringTheDogs").submit(function(event) {
     }
 );
 
+function empty() {
+  $(".dogsContainer").empty();
+  $( ".dogsByBreedContainer" ).empty();
+};
+
 function printDogImages(data) {
+  empty();
   for(let i=0;i < data.message.length;i++){
     console.log(data.message[i]);
     let img = '<li><img src="'+ data.message[i] + '"></li>';
@@ -32,6 +38,7 @@ function displayError(){
 }
 function getDogByBreed(userInputBreed) {
   console.log(userInputBreed);
+  empty();
   if(userInputBreed.message === "Breed not found (master breed does not exist)") 
   { displayError();
   } else { 
